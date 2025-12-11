@@ -1,6 +1,8 @@
 public class Sales {
+    //sale data
     double potatoPrice, OnionPrice,OilPrice, potatoSold,OnionSold,OilSold;
     double potatoRevenue,onionRevenue, oilRevenue, totalRvenue;
+    //purchase data
     double potatoPurchasePrice, onionPurchasePrice,oilPurchasePrice, potatoPurchased, onionPurchased, oilPurchased;
     double potatoCost,onionCost, oilCost, totalCost;
     int TransportCost;

@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        //Assignment2
         Scanner s=new Scanner(System.in);
         Sales saleCalculation= new Sales();
         //sales info collection
