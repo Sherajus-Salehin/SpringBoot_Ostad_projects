@@ -1,9 +1,7 @@
 public class consoleATM {
-
+    //current balance
     double Balance=0;
-
     void Deposit(double Amount){
-
         Balance=Balance+Amount;
     }
     int Withdraw(double Amount){

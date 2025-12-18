@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-      //ASSIGNMENT 3 -> DEADLINE 18 DECEMBER 2025
+      //ASSIGNMENT 3 -> DEADLINE 18 DECEMBER 2025.
     consoleATM ca=new consoleATM();
     Scanner sc=new Scanner(System.in);
     boolean looping=true;
