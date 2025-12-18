@@ -36,7 +36,9 @@ public class Main {
                 }
                 default -> System.out.println("Invalid Choice\n");
             }
-        }System.out.println("Thank you for using the ATM! Goodbye,");
+        }
+        sc.close();
+        System.out.println("Thank you for using the ATM! Goodbye,");
 
 
 
