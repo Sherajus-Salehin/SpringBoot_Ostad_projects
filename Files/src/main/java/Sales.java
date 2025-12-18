@@ -6,7 +6,6 @@ public class Sales {
     double potatoPurchasePrice, onionPurchasePrice,oilPurchasePrice, potatoPurchased, onionPurchased, oilPurchased;
     double potatoCost,onionCost, oilCost, totalCost;
     int TransportCost;
-
     void setPrices(double potato, double onion,double oil){
         potatoPrice=potato;
         OnionPrice=onion;
