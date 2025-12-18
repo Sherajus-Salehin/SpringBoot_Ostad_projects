@@ -2,7 +2,57 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        //Assignment2
+      //ASSIGNMENT 3 -> DEADLINE 18 DECEMBER 2025
+    consoleATM ca=new consoleATM();
+    Scanner sc=new Scanner(System.in);
+    boolean looping=true;
+        while (looping) {
+            System.out.println("Welcome to the Simple Console ATM!\n" +
+                    "Please select an option:\n" +
+                    "1. Check Balance\n" +
+                    "2. Deposit Funds\n" +
+                    "3. Withdraw Funds\n" +
+                    "4. Exit\n");
+            int choice=sc.nextInt();
+            int amount;
+            switch(choice){
+                case 1 -> System.out.println("Your balance is "+ca.Balance+"bdt\n");
+                case 2 -> {
+                    System.out.println("Enter amount");
+                    amount = sc.nextInt();
+                    ca.Deposit(amount);
+                }
+                case 3 -> {
+                    System.out.println("Enter amount");
+                    amount = sc.nextInt();
+                    switch (ca.Withdraw(amount)){
+                        case 1 -> System.out.println("Withdrawal Successful\n");
+                        case 0 -> System.err.println("Max limit = 100 bdt\n");
+                        case-1 -> System.err.println("Insufficient balance\n");
+                    }
+                }
+                case 4 -> {
+                    looping=false;
+                }
+                default -> System.out.println("Invalid Choice\n");
+            }
+        }System.out.println("Thank you for using the ATM! Goodbye,");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*ASSIGNMENT 2 -> DEADLINE 11 DECEMBER 2025
         Scanner s=new Scanner(System.in);
         Sales saleCalculation= new Sales();
         //sales info collection
@@ -44,10 +94,8 @@ public class Main {
 
         s.close();
 
+        //ASSIGNMENT 1 -> DEADLINE 6 DECEMBER 2025
 
-
-
-        /*  ASSIGNMENT 1
         Identity i1= new Identity();
         System.out.println(i1.AllInfo());
         System.out.println("\n### Module Summary ###");
