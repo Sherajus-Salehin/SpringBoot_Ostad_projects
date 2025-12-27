@@ -1,3 +1,5 @@
+package Assignment3;
+
 public class consoleATM {
     //current balance
     double Balance=0;

@@ -47,7 +47,7 @@ public class Main {
 
     /*ASSIGNMENT 3 -> DEADLINE 18 DECEMBER 2025.
 
-    consoleATM ca=new consoleATM();
+    Assignment3.consoleATM ca=new Assignment3.consoleATM();
     Scanner sc=new Scanner(System.in);
     boolean looping=true;
         while (looping) {
