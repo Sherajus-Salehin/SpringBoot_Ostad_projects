@@ -41,6 +41,8 @@ public class Main {
                     else if (currentItem==3) Noodles.decrementQuantity();
                 }
             }
+
+            //remaining task 1. fix add remove 2. add cart printing 3. add total payable printing
             looping=false;
         }
 
