@@ -41,8 +41,9 @@ public class Main {
                     else if (currentItem==3) Noodles.decrementQuantity();
                 }
             }
-
+            looping=false;
         }
+
 
     }
 }
