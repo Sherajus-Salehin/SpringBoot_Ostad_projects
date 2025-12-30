@@ -15,13 +15,28 @@ public class CartItem {
     while(ids.contains(newId)){
         newId=(int) Math.random();
     }
+    productId=newId;
     ids.add(newId);
     }
-    public CartItem(double unitPrice, int quantity, boolean addedToCArt){
+    public CartItem( String name,double unitPrice, int quantity, boolean addedToCArt){
         this();
+        this.name=name;
         this.unitPrice=unitPrice;
         this.quantity=quantity;
         this.addedToCArt=addedToCArt;
+    }
+
+    void addOrRemove(){
+        if(addedToCArt){
+            addedToCArt=false;
+            quantity=0;
+        }else {
+            addedToCArt=true;
+            quantity=1;
+        }
+    }
+    double totalPayable(){
+        return (quantity*unitPrice);
     }
 
     void incrementQuantity(){
