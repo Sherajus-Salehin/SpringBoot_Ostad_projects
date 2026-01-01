@@ -52,7 +52,10 @@ public class Main {
                 printCart(Egg,Milk,Noodles);
             } else if (choice==8) {
                 totalPayable(Egg,Milk,Noodles);
-            }else if(choice==9) looping=false;
+            }else if(choice==9) {
+                sc.close();
+                looping=false;
+            }
 
         }
 
