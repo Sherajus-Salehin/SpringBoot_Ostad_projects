@@ -1,25 +1,18 @@
 package Assignment5;
-
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 public class CartItem {
-    private int productId,quantity;
+    Random r=new Random();
+    int id=r.nextInt(10);
+    private final int productId= id;
+    private int quantity;
     private double unitPrice;
     private boolean addedToCArt;
     private String name;
-    private Set<Integer> ids = new HashSet<>(); //as i am not sure whether random repeats or not.
 
-    public CartItem() {
-    int newId= (int) Math.random();
-    while(ids.contains(newId)){
-        newId=(int) Math.random();
-    }
-    productId=newId;
-    ids.add(newId);
-    }
     public CartItem( String name,double unitPrice, int quantity, boolean addedToCArt){
-        this();
         this.name=name;
         this.unitPrice=unitPrice;
         this.quantity=quantity;

@@ -1,8 +1,12 @@
 package Assignment5;
 
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
+
 public class Main {
     public static void main(String[] args){
+
         Scanner sc=new Scanner(System.in);
         CartItem Egg=new CartItem("Egg",10,0,false);
         CartItem Milk=new CartItem("Milk",20,0,false);
