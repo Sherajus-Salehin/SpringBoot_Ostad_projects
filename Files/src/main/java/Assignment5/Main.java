@@ -1,7 +1,6 @@
 package Assignment5;
 
 import java.util.Scanner;
-//remaining : fix appearance of increase/decrease after removal
 public class Main {
     public static void main(String[] args){
         Scanner sc=new Scanner(System.in);
@@ -9,38 +8,42 @@ public class Main {
         CartItem Milk=new CartItem("Milk",20,0,false);
         CartItem Noodles=new CartItem("Noodles",30,0,false);
         boolean looping=true;
+        boolean added=true;
         int currentItem=-1;
         while (looping){
             System.out.println("Press <1> to add/remove Egg to cart.\nPress <2> to add/remove Milk to cart.\nPress <3> to add/remove Noodles to cart.");
             int choice= sc.nextInt();
             switch (choice){
                 case 1 ->{
-                    Egg.addOrRemove();
+                    added=Egg.addOrRemove();
                     currentItem=1;
                 }
                 case 2->{
                     currentItem=2;
-                    Milk.addOrRemove();
+                    added=Milk.addOrRemove();
                 }
                 case 3->{
                     currentItem=3;
-                    Noodles.addOrRemove();
+                    added=Noodles.addOrRemove();
                 }
             }
-            System.out.println("Press <5> to increase quantity.\nPress <6> to decrease quantity.>\n<7>to continue. ");
-            choice= sc.nextInt();
-            switch (choice){
-                case 5->{
-                    if(currentItem==1) Egg.incrementQuantity();
-                    else if (currentItem==2) Milk.incrementQuantity();
-                    else if (currentItem==3) Noodles.incrementQuantity();
-                }
-                case 6->{
-                    if(currentItem==1) Egg.decrementQuantity();
-                    else if (currentItem==2) Milk.decrementQuantity();
-                    else if (currentItem==3) Noodles.decrementQuantity();
+            if(added && choice<4){
+                System.out.println("Press <5> to increase quantity.\nPress <6> to decrease quantity.>\n<7>to continue. ");
+                choice= sc.nextInt();
+                switch (choice){
+                    case 5->{
+                        if(currentItem==1) Egg.incrementQuantity();
+                        else if (currentItem==2) Milk.incrementQuantity();
+                        else if (currentItem==3) Noodles.incrementQuantity();
+                    }
+                    case 6->{
+                        if(currentItem==1) Egg.decrementQuantity();
+                        else if (currentItem==2) Milk.decrementQuantity();
+                        else if (currentItem==3) Noodles.decrementQuantity();
+                    }
                 }
             }
+
             System.out.println("Press <7> to print the cart \npress <8> to check total payable amount \npress <9> to exit\nPress<0> to continue shopping");
             choice=sc.nextInt();
             if(choice==7){

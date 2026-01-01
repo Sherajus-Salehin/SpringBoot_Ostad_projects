@@ -26,13 +26,17 @@ public class CartItem {
         this.addedToCArt=addedToCArt;
     }
 
-    void addOrRemove(){
+    boolean addOrRemove(){
         if(addedToCArt){
             addedToCArt=false;
             quantity=0;
+            return false;
+
         }else {
             addedToCArt=true;
             quantity=1;
+            return true;
+
         }
     }
     double totalPayable(){
