@@ -1,0 +1,25 @@
+package Assignment6;
+
+public class Cat extends Pet implements PetBehaviour{
+    public Cat(String name, int age, String breed) {
+        super(name, age, breed);
+    }
+
+    @Override
+    void makeSound() {
+        System.out.println("Meow!");
+    }
+
+    @Override
+    public void feed() {
+        System.out.println("Feeding the car.");
+    }
+
+    @Override
+    public void play() {
+        System.out.println("Playing with the cat.");
+    }
+    public String toString(){
+        return "\nName:"+getName()+"\nAge: "+getAge()+"\nBreed: "+getBreed();
+    }
+}
