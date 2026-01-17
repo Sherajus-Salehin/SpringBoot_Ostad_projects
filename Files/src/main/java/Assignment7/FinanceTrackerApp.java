@@ -31,6 +31,7 @@ public class FinanceTrackerApp {
                 case 6-> looping=false;
             }
         }
+        sc.close();
 
     }
 
