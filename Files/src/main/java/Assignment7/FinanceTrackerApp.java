@@ -24,23 +24,11 @@ public class FinanceTrackerApp {
                     transactions.add(t);
                     ids.add(t.getId());
                 }
-                case 2->{
-                    Read(transactions);
-                }
-                case 3->{
-                    Update(sc, ids, types, transactions);
-                }
-                case 4->{
-                    Delete(transactions,sc,ids);
-
-                }
-                case 5->{
-                    double balance=CheckBalance(transactions);
-                    System.out.println("Balance is "+balance);
-                }
-                case 6->{
-                    looping=false;
-                }
+                case 2-> System.out.println(Read(transactions));
+                case 3-> Update(sc, ids, types, transactions);
+                case 4-> Delete(transactions,sc,ids);
+                case 5-> System.out.println("Balance is "+CheckBalance(transactions));
+                case 6-> looping=false;
             }
         }
 
@@ -53,7 +41,6 @@ public class FinanceTrackerApp {
         double amount=AmountSetter(sc);
         System.out.println("Enter Description of your transaction");
         String description=sc.nextLine();
-        sc.nextLine();
         String date=DateSetter(sc);
         return new Transaction(id,amount,type,description,date);
     }
@@ -65,10 +52,10 @@ public class FinanceTrackerApp {
         }
     return s.toString();
     }
-    static ArrayList<Transaction> Update(Scanner sc, Set<String> ids, Set<String> types, ArrayList<Transaction>  transactions) {
+    static void Update(Scanner sc, Set<String> ids, Set<String> types, ArrayList<Transaction>  transactions) {
         System.out.println("Enter ID of your transaction");
         String id=sc.nextLine();
-        sc.nextLine();
+        //sc.nextLine();
         if(ids.contains(id)){
             int index=0;
             for(int i=0;i<ids.size();i++){
@@ -91,8 +78,8 @@ public class FinanceTrackerApp {
                     t.setAmount(amount);
                 }
                 case 3->{
+                    System.out.println("Updated description: ");
                     String description=sc.nextLine();
-                    sc.nextLine();
                     t.setDescription(description);
                 }
                 case 4->{
@@ -104,12 +91,11 @@ public class FinanceTrackerApp {
         }else {
             System.out.println("Invalid ID");
         }
-    return transactions;
     }
-    static ArrayList<Transaction> Delete(ArrayList<Transaction>  transactions,Scanner sc, Set<String> ids) {
+    static void Delete(ArrayList<Transaction>  transactions,Scanner sc, Set<String> ids) {
         System.out.println("Enter ID of your transaction");
         String id = sc.nextLine();
-        sc.nextLine();
+        //sc.nextLine();
         if (ids.contains(id)) {
             int index = 0;
             for (int i = 0; i < ids.size(); i++) {
@@ -121,7 +107,6 @@ public class FinanceTrackerApp {
         }else{
             System.out.println("Invalid ID");
         }
-    return transactions;
     }
     static double CheckBalance(ArrayList<Transaction>  transactions) {
         double balance=0;
@@ -140,26 +125,21 @@ public class FinanceTrackerApp {
     static String IDSetter(Scanner sc, Set<String> IDs) {
         System.out.println("Enter transaction ID: ");
         String id=sc.nextLine();
-        sc.nextLine();
         if(IDs.contains(id)){
             System.out.println("ID already exists. Enter properly");
-            IDSetter(sc,IDs);
-        }else {
-            return id;
+             return IDSetter(sc,IDs);
         }
-        return "";
+        return id;
     }
     static String TypeSetter(Scanner sc, Set<String> types) {
-        System.out.println("Enter transaction Type: ");
-        String type=sc.nextLine();
-        sc.nextLine();
+        System.out.println("Enter transaction Type: (INCOME or EXPENSE)");
+        String type=sc.nextLine().toUpperCase();
         if(types.contains(type)){
             return type;
         }else {
             System.out.println("Type doesn't exist. Enter properly");
-            TypeSetter(sc,types);
+            return TypeSetter(sc,types);
         }
-        return "";
     }
     static double AmountSetter(Scanner sc) {
         System.out.println("Enter transaction Amount: ");
@@ -167,14 +147,14 @@ public class FinanceTrackerApp {
         sc.nextLine();
         if(amount<0){
             System.out.println("Cannot be less than zero");
-            AmountSetter(sc);
+             return AmountSetter(sc);
         }
-        return 0;
+        return amount;
     }
     static String DateSetter(Scanner sc) {
         System.out.println("write <today> to enter today's date or Enter manually (Format- YYYY-MM-DD) ");
         String date=sc.nextLine();
-        sc.nextLine();
+        //sc.nextLine();
         if (date.equals("today")){
             int year= LocalDate.now().getYear();
             int month= LocalDate.now().getMonthValue();
@@ -185,9 +165,9 @@ public class FinanceTrackerApp {
             int year=Integer.parseInt(dateParts[0]);
             int month=Integer.parseInt(dateParts[1]);
             int day=Integer.parseInt(dateParts[2]);
-            if((year>2000 &&year<3000) || month>12 || day>30) {
+            if(year<2000 ||year>3000 || month>12 || day>30) {
                 System.out.println("Invalid date");
-                DateSetter(sc);
+                 return DateSetter(sc);
             }
             return date;
         }

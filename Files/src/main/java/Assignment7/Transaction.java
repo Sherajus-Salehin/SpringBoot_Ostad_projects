@@ -1,6 +1,7 @@
 package Assignment7;
 
 public class Transaction {
+
     private final String id;
     private String type;
     private double amount;
