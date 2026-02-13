@@ -3,6 +3,7 @@ package com.example.demo;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,9 +12,14 @@ import java.util.stream.Collectors;
 public class TransactionController {
     private List<Transaction> transactionList=new ArrayList<>();
 
+    ///api/transactions?type=income
+
     @GetMapping
-    public List<Transaction> getAllTransactions(){
-        return transactionList.stream().collect(Collectors.toList());
+    public List<Transaction> getAllTransactions(@RequestParam(name= "type",required = false) String type){
+        if(type!=null){
+            return transactionList.stream().filter(t-> t.getType().equalsIgnoreCase(type)).toList();
+        }
+        return transactionList;
     }
 
     @GetMapping("/{id}")
@@ -21,6 +27,8 @@ public class TransactionController {
         return transactionList.stream().filter(t -> t.getId().equals(id)).findFirst().orElse(null
         );
     }
+
+
     @PostMapping
     public Transaction addTransaction(@RequestBody Transaction tr){
         transactionList.add(tr);
