@@ -13,7 +13,7 @@ public class StudentController {
     public String getInfo(){
         LocalDate date=LocalDate.now();
         String today= date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        return "Sherajus Salehin\nSpring Boot Development\n"+today+"\nHello, fellow developers!";
+        return "<h1>Sherajus Salehin<br>Spring Boot Development<br>"+today+"<br>Hello, fellow developers!<h1>";
     }
     @GetMapping("/goal")
     public String knowGoal(){
