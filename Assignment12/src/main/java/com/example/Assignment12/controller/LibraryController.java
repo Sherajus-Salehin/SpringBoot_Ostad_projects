@@ -16,49 +16,50 @@ public class LibraryController {
     @Autowired
     LibraryService lc;
 
-@GetMapping("/test")
-public String testing(){
-    return "<h1>its</h1><br> <h2>working</h2>";
-}
-@GetMapping("/all")
-public List<Book> getAllBooks(){
-    return lc.getBooks();
-}
-@PostMapping
-public Book addBook(@RequestBody Book b){
-    return null;
-}
-@GetMapping("/author/{authorName}")
-public List<Book> getBooksByAuthor(@PathVariable String authorName){
-    return null;
-}
-
-@GetMapping("/genre/{genre}")
-public List<Book> getBooksByGenre(@PathVariable String genre){
-    return null;
-}
-
-@GetMapping("/publication/{publication}/summary")
-public HashMap<String,Integer> getBooksByPublication(@PathVariable String publication){
-    return null;
-}
-
-@GetMapping("/{id}")
-public Book getBookById(@PathVariable long id){
-    return null;
-}
-@PutMapping("/{id}")
-public Book updateById(@PathVariable long id, @RequestBody Book b){
-    return null;
+    @GetMapping("/test")
+    public String testing() {
+        return "<h1>its</h1><br> <h2>working</h2>";
     }
 
-public String deleteABook(@PathVariable long id){
-    boolean res=false;
-    return res ? "deleted successfully": "error deleting";
-}
+    @GetMapping
+    public List<Book> getAllBooks() {
+        return lc.getBooks();
+    }
 
+    @PostMapping
+    public void addBook(@RequestBody Book b) {
+        lc.addBook(b);
+    }
 
+    @GetMapping("/author/{authorName}")
+    public List<Book> getBooksByAuthor(@PathVariable String authorName) {
+        return lc.getByAuthor(authorName);
+    }
 
+    @GetMapping("/genre/{genre}")
+    public List<Book> getBooksByGenre(@PathVariable Book.Genre g) {
+        return lc.getByGenre(g);
+    }
+
+    @GetMapping("/publication/{publication}/summary")
+    public HashMap<String, Integer> getBooksByPublication(@PathVariable String publication) {
+        return null;
+    }
+
+    @GetMapping("/{id}")
+    public Book getBookById(@PathVariable long id) {
+        return lc.getById(id);
+    }
+
+    @PutMapping("/{id}")
+    public void updateById(@PathVariable long id, @RequestBody Book b) {
+        //return lc.addBook(b);
+        lc.updateBook(id,b);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteABook(@PathVariable long id) {
+        lc.delete(id);
+    }
 
 
 }
