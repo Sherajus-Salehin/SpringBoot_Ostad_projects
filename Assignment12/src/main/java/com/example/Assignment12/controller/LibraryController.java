@@ -37,13 +37,18 @@ public class LibraryController {
     }
 
     @GetMapping("/genre/{genre}")
-    public List<Book> getBooksByGenre(@PathVariable Book.Genre g) {
-        return lc.getByGenre(g);
+    public List<Book> getBooksByGenre(@PathVariable Book.Genre genre) {
+        return lc.getByGenre(genre);
+    }
+    @GetMapping("/publication/{publication}")
+    public List<Book> getBooksByPublication(@PathVariable String publication) {
+        return lc.getByPublication(publication);
     }
 
+
     @GetMapping("/publication/{publication}/summary")
-    public HashMap<String, Integer> getBooksByPublication(@PathVariable String publication) {
-        return null;
+    public String publicationSummary(@PathVariable String publication) {
+        return lc.publicationSummary(publication);
     }
 
     @GetMapping("/{id}")

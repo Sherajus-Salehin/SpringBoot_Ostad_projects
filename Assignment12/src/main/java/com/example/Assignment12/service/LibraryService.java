@@ -21,11 +21,26 @@ public class LibraryService {
 
     }
     public List<Book> getByAuthor(String author){
+        //why stream api when JpaRepository gives me everything
         return repo.findByAuthor(author);
     }
-    public List<Book> getByGenre(Book.Genre g){
-        return repo.findByGenre(g);
+    public List<Book> getByGenre(Book.Genre genre){
+        //Book.Genre genre= Book.Genre.valueOf(g);
+        return repo.findByGenre(genre);
     }
+
+    public List<Book> getByPublication(String p){
+        //Book.Genre genre= Book.Genre.valueOf(g);
+        return repo.findByPublication(p);
+    }
+    public String publicationSummary(String p){
+        List<Book> bl=getByPublication(p); //book from this publication
+        List<Book> al= getBooks();//All the books
+        int myBooks=bl.stream().mapToInt(Book::getAvailableCopies).sum();
+        int allBooks=al.stream().mapToInt(Book::getAvailableCopies).sum();
+        return "<h6>Publication: "+p+" has "+myBooks+" copies available out of a Total of: "+allBooks+" books</h6>";
+    }
+
     public void updateBook(Long id,Book b){
         // Too lazy to work on the 404 exception 😢
         Book original=repo.findById(id).orElse(b);
