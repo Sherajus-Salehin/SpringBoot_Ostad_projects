@@ -31,6 +31,11 @@ public class LibraryController {
         lc.addBook(b);
     }
 
+    @PostMapping("/list")
+    public void addBooks(@RequestBody List<Book> books){
+        lc.addBooks(books);
+    }
+
     @GetMapping("/author/{authorName}")
     public List<Book> getBooksByAuthor(@PathVariable String authorName) {
         return lc.getByAuthor(authorName);

@@ -22,23 +22,24 @@ public class LibraryService {
     }
     public List<Book> getByAuthor(String author){
         //why stream api when JpaRepository gives me everything
-        return repo.findByAuthor(author);
+        //return repo.findByAuthor(author);
+        return getBooks().stream().filter(Book -> author.equalsIgnoreCase(Book.getAuthor())).toList();
     }
     public List<Book> getByGenre(Book.Genre genre){
-        //Book.Genre genre= Book.Genre.valueOf(g);
-        return repo.findByGenre(genre);
+        //return repo.findByGenre(genre);
+        return getBooks().stream().filter(Book -> genre.equals(Book.getGenre())).toList();
     }
 
     public List<Book> getByPublication(String p){
-        //Book.Genre genre= Book.Genre.valueOf(g);
-        return repo.findByPublication(p);
+        //return repo.findByPublication(p);
+        return getBooks().stream().filter(Book -> p.equals(Book.getPublication())).toList();
     }
     public String publicationSummary(String p){
         List<Book> bl=getByPublication(p); //book from this publication
         List<Book> al= getBooks();//All the books
         int myBooks=bl.stream().mapToInt(Book::getAvailableCopies).sum();
         int allBooks=al.stream().mapToInt(Book::getAvailableCopies).sum();
-        return "<h6>Publication: "+p+" has "+myBooks+" copies available out of a Total of: "+allBooks+" books</h6>";
+        return "<h6>Publication: "+p+" has "+myBooks+" copies available.<br> Total number of books in this library: "+allBooks+" </h6>";
     }
 
     public void updateBook(Long id,Book b){
@@ -64,5 +65,9 @@ public class LibraryService {
     }
     public void delete(Long id){
         repo.deleteById(id);
+    }
+
+    public void addBooks(List<Book> books) {
+        repo.saveAll(books);
     }
 }
