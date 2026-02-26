@@ -22,17 +22,15 @@ public class LibraryService {
     }
     public List<Book> getByAuthor(String author){
         //why stream api when JpaRepository gives me everything
-        //return repo.findByAuthor(author);
-        return getBooks().stream().filter(Book -> author.equalsIgnoreCase(Book.getAuthor())).toList();
+        return repo.findByAuthor(author);
+
     }
     public List<Book> getByGenre(Book.Genre genre){
-        //return repo.findByGenre(genre);
-        return getBooks().stream().filter(Book -> genre.equals(Book.getGenre())).toList();
+        return repo.findByGenre(genre);
     }
 
     public List<Book> getByPublication(String p){
-        //return repo.findByPublication(p);
-        return getBooks().stream().filter(Book -> p.equals(Book.getPublication())).toList();
+        return repo.findByPublication(p);
     }
     public String publicationSummary(String p){
         List<Book> bl=getByPublication(p); //book from this publication

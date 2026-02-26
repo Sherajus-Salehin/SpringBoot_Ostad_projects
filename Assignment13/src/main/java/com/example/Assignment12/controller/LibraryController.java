@@ -45,6 +45,12 @@ public class LibraryController {
     public List<Book> getBooksByGenre(@PathVariable Book.Genre genre) {
         return lc.getByGenre(genre);
     }
+
+    @GetMapping("/genre/{genre}/total")
+    public int totalInAGenre(@PathVariable Book.Genre genre){
+        return lc.getByGenre(genre).size();
+    }
+
     @GetMapping("/publication/{publication}")
     public List<Book> getBooksByPublication(@PathVariable String publication) {
         return lc.getByPublication(publication);
