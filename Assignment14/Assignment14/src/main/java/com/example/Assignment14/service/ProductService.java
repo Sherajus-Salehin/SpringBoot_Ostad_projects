@@ -26,8 +26,8 @@ public class ProductService {
 
     public void addProduct(Product product){
             String cSKU= product.getSku();
-            if(!isValidSku(cSKU)) throw new InvalidSkuFormatException("SKU format error");
-            if(isUniqueSku(cSKU)) throw new SkuAlreadyExistsException("already exists");
+            if(!isValidSku(cSKU)) throw new InvalidSkuFormatException("SKU format error", product.getSku());
+            if(isUniqueSku(cSKU)) throw new SkuAlreadyExistsException("already exists",product.getSku());
             Product saved=pr.save(product);
             log.info("Product created with ID: {} and SKU: {}", saved.getId(), saved.getSku());
     }

@@ -26,16 +26,19 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler(InvalidSkuFormatException.class)
     public ResponseEntity<?> handleInvalidSku(InvalidSkuFormatException e){
+        log.warn("Invalid SKU({}) format",e.getSku());
         ErrorResponse erm=new ErrorResponse(LocalDateTime.now(),e.getMessage());
         return new ResponseEntity<>(erm, HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(SkuAlreadyExistsException.class)
     public ResponseEntity<?> copySKU(SkuAlreadyExistsException e){
+        log.warn("The SKU({}) already exists",e.getSku());
         ErrorResponse erm=new ErrorResponse(LocalDateTime.now(),e.getMessage());
         return new ResponseEntity<>(erm, HttpStatus.CONFLICT);
     }
 
     public  ResponseEntity<?> invalidBean(MethodArgumentNotValidException e){
+        log.error("Validation failed: {}",e.getMessage());
         ErrorResponse erm=new ErrorResponse(LocalDateTime.now(),e.getMessage());
         return new ResponseEntity<>(erm,HttpStatus.BAD_REQUEST);
     }
