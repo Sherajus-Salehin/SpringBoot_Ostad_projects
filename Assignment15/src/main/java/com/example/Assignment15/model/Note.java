@@ -1,5 +1,6 @@
 package com.example.Assignment15.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -17,4 +18,8 @@ public class Note {
     private String content;
     @NotNull
     private String ownerUsername;
+    @ManyToOne
+    @JoinColumn(name = "user_id",nullable = false)
+    @JsonBackReference
+    private User user;
 }

@@ -1,5 +1,6 @@
 package com.example.Assignment15.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -17,6 +18,8 @@ public class User {
     private String userName;
     @NotNull
     private String password;
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Note> notes;
     private List<String> roles;
 }
