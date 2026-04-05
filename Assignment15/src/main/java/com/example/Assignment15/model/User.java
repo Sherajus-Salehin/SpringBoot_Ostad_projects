@@ -21,5 +21,5 @@ public class User {
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Note> notes;
-    private List<String> roles;
+    private String role;
 }
