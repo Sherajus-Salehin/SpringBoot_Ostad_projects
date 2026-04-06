@@ -4,18 +4,21 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
 @Table(name="users")
 @Entity
 @Data
+@RequiredArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     @NotNull
-    private String userName;
+    @Column(unique=true,nullable=false)
+    private String username;
     @NotNull
     private String password;
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)

@@ -16,8 +16,6 @@ public class Note {
     private String title;
     @NotNull
     private String content;
-    @NotNull
-    private String ownerUsername;
     @ManyToOne
     @JoinColumn(name = "user_id",nullable = false)
     @JsonBackReference

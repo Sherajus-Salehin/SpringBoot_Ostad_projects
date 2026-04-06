@@ -4,56 +4,40 @@ import com.example.Assignment15.model.Note;
 import com.example.Assignment15.model.User;
 import com.example.Assignment15.service.NotesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/notes")
 public class NotesController {
     @Autowired
     NotesService service;
 
     //User
-    @PostMapping("/notes")
-    void newNotes(@RequestBody Note notes) {
-        service.addNote(notes);
+    @PostMapping
+    Note newNotes(@RequestBody Note notes, Authentication authentication) {
+        return service.addNote(notes, authentication.getName());
     }
-    @GetMapping("/notes")
-    List<Note> allNotes(){
-        return service.findAll();
+    @GetMapping
+    List<Note> allNotes(Authentication authentication) {
+        User user= service.getUser(authentication.getName());
+        return service.findAll(user);
     }
-    @GetMapping("/notes/{id}")
-    Note findNoteById(@PathVariable Long id){
-        return service.findById(id);
+    @GetMapping("/{id}")
+    Note findNoteById(@PathVariable Long id, Authentication authentication) {
+        User user= service.getUser(authentication.getName());
+        return service.findById(id, user);
     }
-    @PutMapping("/notes/{id}")
-    void updateNote(@RequestBody Note note){
-        service.updateNote(note);
+    @PutMapping("/{id}")
+    Note updateNote(@PathVariable Long id,@RequestBody Note note, Authentication authentication) {
+        User user= service.getUser(authentication.getName());
+        return service.updateNote(id, note, user);
     }
-    @DeleteMapping("/notes/{id}")
-    void deleteNote(@PathVariable Long id){
-        service.deleteById(id);
+    @DeleteMapping("/{id}")
+    void deleteNote(@PathVariable Long id, Authentication authentication) {
+        User user= service.getUser(authentication.getName());
+        service.deleteById(id,user);
     }
-
-    //Admin
-    @GetMapping("/admin/notes")
-    List<Note> allNotesAdmin(){
-        return service.findAll();
-    }
-    @DeleteMapping("/admin/notes/{id}")
-    void deleteNoteById(@PathVariable Long id){
-        service.deleteById(id);
-    }
-
-    //Public
-    @PostMapping("/auth/register/user")
-    void registerUser(@RequestBody User user){
-
-    }
-    @PostMapping("/auth/register/admin")
-    void registerUserByAdmin(@RequestBody User user){
-
-    }
-
 }
