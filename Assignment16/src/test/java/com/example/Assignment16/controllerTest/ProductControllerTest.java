@@ -35,7 +35,7 @@ public class ProductControllerTest {
         mockMvc.perform(post("/products")
                 .contentType(String.valueOf(MediaType.APPLICATION_JSON))
                 .content(objectMapper.writeValueAsString(product)))
-                .andExpect(status().isOk())
+                .andExpect(status().is(201))
                 .andExpect(jsonPath("$.name").value("Mouse"))
                 .andExpect(jsonPath("$.price").value(30.40));
 

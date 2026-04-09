@@ -4,6 +4,8 @@ import com.example.Assignment16.model.Product;
 import com.example.Assignment16.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,8 +16,9 @@ public class ProductController {
     ProductService productService;
 
     @PostMapping()
-    Product postProduct(@RequestBody Product product){
-        return productService.addProduct(product);
+    ResponseEntity<Product> postProduct(@RequestBody Product product){
+        Product newProduct = productService.addProduct(product);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newProduct);
     }
 
     @GetMapping("/{id}")
