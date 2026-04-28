@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>Assignment14</artifactId>
+	<artifactId>InventoryManagement_System</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Assignment14</name>
 	<description>Data Model &amp; Validation, Service Layer &amp; Custom Exceptions, Controller &amp; Endpoints, Exception Handling &amp; Logging </description>
