@@ -1,6 +1,7 @@
 package com.example.Assignment15.controller;
 
 import com.example.Assignment15.model.User;
+import com.example.Assignment15.service.AuthService;
 import com.example.Assignment15.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +14,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
+//    @Autowired
+//    UserService userService;
     @Autowired
-    UserService userService;
+    AuthService authService;
+    @PostMapping("/login")
+    public String login(@RequestBody User user){
+        return authService.login(user.getUsername(), user.getPassword());
+    }
+
     @PostMapping("/register/user")
-    public User registerUser(@RequestBody User user){
-        return userService.createUser(user);
+    public String registerUser(@RequestBody User user){
+        return authService.registerUser(user);
     }
     @PostMapping("/register/admin")
-    public User registerAdmin(@RequestBody User user){
-        return userService.createAdmin(user);
+    public String registerAdmin(@RequestBody User user){
+        return authService.registerAdmin(user);
     }
 }
