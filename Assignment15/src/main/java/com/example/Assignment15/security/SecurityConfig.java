@@ -1,13 +1,9 @@
 package com.example.Assignment15.security;
 
-
-import com.example.Assignment15.service.CustomUserDetailsService;
 import com.example.Assignment15.utilities.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -30,8 +26,8 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable())
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/api/auth/**").permitAll()
-                                .requestMatchers("/h2-console/**").permitAll()
+                        auth.requestMatchers("/api/auth/register/user").permitAll()
+                                .requestMatchers("/api/auth/register/admin").hasRole("ADMIN")
                                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/api/notes/**").hasRole("USER")
                                 .anyRequest().authenticated()
