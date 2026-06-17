@@ -85,7 +85,7 @@ public class FileService {
         }
  metadata.setUsed(true);
         fileMetadataRepository.save(metadata);
-        return "/download/" + metadata.getStoredFileName();
+        return "http://localhost:8080/api/files/download/" + metadata.getStoredFileName();
     }
 
     @Scheduled(cron = "0 */1 * * * *") // Runs every minute
